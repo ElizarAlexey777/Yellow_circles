@@ -3,15 +3,15 @@ from random import randint as r
 
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import uic
+from yellow_c import Ui_MainWindow
 
 SCREEN_SIZE = [500, 500]
 
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        uic.loadUi('yellow_c.ui', self)
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent=parent)
+        self.setupUi(self)
         self.do_paint = False
         self.initUI()
 
@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         rand_size = r(10, 500)
         rand_p = [r(10, 480), r(10, 480)]
 
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(r(0, 255), r(0, 255), r(0, 255)))
         qp.drawEllipse(rand_p[0], rand_p[1], rand_size, rand_size)
         self.do_paint = False
 
